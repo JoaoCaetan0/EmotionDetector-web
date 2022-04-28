@@ -1,0 +1,30 @@
+CREATE TABLE sensores (
+id int NOT NULL AUTO_INCREMENT,
+nome VARCHAR(60),
+descricao TEXT,
+quantidade int,
+    Constraint pk_sensores PRIMARY KEY(id)
+);
+
+insert into sensores (nome, descricao, quantidade)
+values
+('Cardíaco', 'Mede sua frequência cardíaca atravez de uma luz que é indentificada
+mudanças por causa do fluxo do sangue', '1'),
+('Umidade', 'Mede a umidade daquilo que está em contato', '1'),
+('Movimento', 'Funciona a partir da emissão de raios infravermelhos', '1'),
+('Temperatura', 'A resistência elétrica dilata de acordo com a temperatura', '1');
+CREATE TABLE funcao (
+id int NOT NULL AUTO_INCREMENT,
+nome VARCHAR(60),
+descricao TEXT,
+idsen int,
+    PRIMARY KEY (id),
+CONSTRAINT sensores_funcao_pk FOREIGN KEY (idsen) references sensores(id)
+);
+
+insert into funcao (nome, descricao, idsen)
+values
+('Piscar LED', 'Pisca o LED de acordo com os batimentos', '1'),
+('Lê batimentos', 'Mede seus batimentos e mostra ao usuário', '2'),
+('Média', 'Faz uma média dos batimentos', '3'),
+('Confirmação', 'Confirma se o "lê batimentos" está correto', '4');
